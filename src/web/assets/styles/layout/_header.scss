@@ -1,0 +1,34 @@
+header{
+    color: $primary-color;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    a{
+        color: $primary-color;
+
+        &:hover{
+            color: $primary-color;
+        }
+    }
+
+}
+.header-nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 2% 0;
+}
+
+.header-nav_logo{
+    font-size: 32px;
+}
+
+.header-nav_menu{
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    width: 40%;
+    justify-content: space-between;
+    font-family: "Open Sans Semibold";
+}

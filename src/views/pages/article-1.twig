@@ -1,0 +1,10 @@
+{{ include('partials/header.twig')}}
+<div class="d-flex flex-wrap">
+{# w-25 : width de 25%#}
+    {% for _movie in movies %}
+   
+        <span class="card-header">{{ _movie.title }}</span>
+        
+    {% endfor %}
+</div>
+{{ include('partials/footer.twig')}}
