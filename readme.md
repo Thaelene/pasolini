@@ -1,6 +1,6 @@
-# Silex template
+# Pasolini's chefs-d'oeuvres
 
-A starter pack unsing Silex
+Introducing the work of the famous italian movie director Pier Paolo Pasolini.
 
 ## How to set this to work
 * Do not forget to change the RewriteBase in the .htaccess

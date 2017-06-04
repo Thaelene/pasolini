@@ -1,0 +1,26 @@
+{{ include('partials/head.twig')}}
+{{ include('partials/header.twig')}}
+
+<section class="container">
+
+<h2 class="home-work_logo logo">{{ work.category }} <span>.</span></h2>
+
+<div class="work">
+    <div class="work-img">
+        <img 
+            src="../{{work.picture}}" 
+            width="100%"
+        >
+    </div>
+    <div class="work-info">
+        <p><span class="work-info_title">Titre :</span> {{ work.title }}</p>
+        <p><span class="work-info_title">Année de sortie :</span> {{ work.release_year }}</p>
+        <p><span class="work-info_title">Durée :</span> {{ work.length }} min/pages</p>
+        <p><span class="work-info_title">Synopsis :</span> {{ work.description }}</p>
+        <p><span class="work-info_title">Score :</span> {{ work.score }} / 10</p>
+    </div>
+</div>
+
+</section>
+
+{{ include('partials/footer.twig')}}

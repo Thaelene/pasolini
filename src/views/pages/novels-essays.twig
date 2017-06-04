@@ -1,0 +1,42 @@
+{{ include('partials/head.twig')}} {{ include('partials/header.twig')}}
+
+<div class="container">
+
+    <h2 class="home-work_logo logo">Ses films <span>:</span></h2>
+
+    {{ form_start(filmography_form) }}
+
+    <div class="form-group">
+        {{ form_label(filmography_form.subject) }} {{ form_widget(filmography_form.subject) }}
+        <div class="text-danger">
+            {{ form_errors(filmography_form.subject) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_widget(filmography_form.submit) }}
+    </div>
+
+    <section>
+        {% for _work in work %}
+    <div class="work">
+    <div class="work-img">
+        <img 
+            src="{{_work.picture}}" 
+            width="100%"
+        >
+    </div>
+    <div class="work-info">
+        <p><span class="work-info_title">Titre :</span> {{ _work.title }}</p>
+        <p><span class="work-info_title">Année de sortie :</span> {{ _work.release_year }}</p>
+        <p><span class="work-info_title">Durée :</span> {{ _work.length }} min/pages</p>
+        <p><span class="work-info_title">Synopsis :</span> {{ _work.description }}</p>
+        <p><span class="work-info_title">Score :</span> {{ _work.score }} / 10</p>
+    </div>
+</div>
+    {% endfor %}
+    </section>
+
+</div>
+
+{{ include('partials/footer.twig')}}

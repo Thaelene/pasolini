@@ -1,0 +1,14 @@
+.work{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.work-img, .work-info{
+    width: 48%;
+}
+.work-info{
+    line-height: 24px;
+}
+.work-info_title{
+    font-family: 'Open Sans Semibold';
+}

@@ -1,10 +1,61 @@
 {{ include('partials/head.twig')}}
-<div class="home-background">
-<div class="container">
-<h1 class="home-background_logo logo">Pier Paolo <span>Pasolini</span></h1>
-</div>
-</div>
+
+<!-- First views -->
+<div class="home-wrapper">
+    <div class="home-background">
+        <div class="container">
+            <h1 class="home-background_logo logo">Pier Paolo <span>Pasolini</span></h1>
+        </div>
+    </div>
+
 {{ include('partials/header.twig')}}
-<section>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit sapiente enim ad. Soluta consequuntur quod porro quia repellat dolorem quo esse, aliquam, ratione, molestias velit expedita minus architecto consequatur ipsum.</p></section>
+
+    <!-- All works -->
+    <section class="home-work container">
+        <h2 class="home-work_logo logo">Oeuvres <span>.</span></h2>
+        <div class="home-work_wrapper">
+            {% for _work in works %}
+            <a href="{{ url('work', {slug: _work.slug}) }}">
+                <div class="home-work_card">
+                    <div class="home-work_card_img" style="background-image: url({{ _work.picture }})"></div>
+                    <p>{{ _work.title }}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="home-stats">
+        <div class="container">
+            <div class="home-stats_wrapper">
+                <!-- Total works -->
+                {% for _nb_row in nb_rows %}
+                <div class="home-stats_total">
+                    <p class="home-stats_number">{{ _nb_row.total }}</p>
+                    <p>oeuvres produites</p>
+                </div>
+                {% endfor %}
+
+                <!-- Total movies -->
+                {% for _nb_movie in nb_movies %}
+                <div class="home-stats_total">
+                    <p class="home-stats_number">{{ _nb_movie.totalCategory }}</p>
+                    <p>films tournés</p>
+                </div>
+                {% endfor %}
+
+                <!-- Total novels and essays -->
+                {% for _nb_novel in nb_novels %}
+                <div class="home-stats_total">
+                    <p class="home-stats_number">{{ _nb_novel.totalCategory }}</p>
+                    <p>romans / essais d'écrits</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</div>
+
+
 {{ include('partials/footer.twig')}}
