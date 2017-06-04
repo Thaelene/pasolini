@@ -8,11 +8,27 @@
         </div>
     </div>
 
-{{ include('partials/header.twig')}}
+    {{ include('partials/header.twig')}}
 
     <!-- All works -->
     <section class="home-work container">
         <h2 class="home-work_logo logo">Oeuvres <span>.</span></h2>
+
+        <div>
+            {{ form_start(sorted_form) }}
+
+            <div class="form-group">
+                {{ form_label(sorted_form.subject) }} {{ form_widget(sorted_form.subject) }}
+                <div class="text-danger">
+                    {{ form_errors(sorted_form.subject) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_widget(sorted_form.submit) }}
+            </div>
+        </div>
+
         <div class="home-work_wrapper">
             {% for _work in works %}
             <a href="{{ url('work', {slug: _work.slug}) }}">

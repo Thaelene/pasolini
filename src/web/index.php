@@ -44,8 +44,9 @@ $app->register(new Silex\Provider\LocaleServiceProvider());
 
 // Create routes
 $app
-    ->get('/', function() use ($app)
+     ->match('/', function(Request $request) use ($app)
     {
+
         $data = array();
 
         $worksModel = new Site\Models\Works($app['db']);
@@ -53,6 +54,54 @@ $app
         $data['nb_rows'] = $worksModel->getRows();
         $data['nb_movies'] = $worksModel->getNbMovies();
         $data['nb_novels'] = $worksModel->getNbNovels();
+
+        $formBuilder = $app['form.factory']->createBuilder();
+
+        $formBuilder->setMethod('post');
+        $formBuilder->setAction($app['url_generator']->generate('home'));
+
+        $formBuilder->add(
+            'subject',
+            ChoiceType::class,
+            array(
+                'label' => 'Trier par',
+                'required' => true,
+                'choices' => array(
+                    'Ordre croissant' => 'ordre croissant',
+                    'Ordre décroissant' => 'ordre decroissant',
+                )
+            )
+        );
+
+        $formBuilder->add(
+            'submit', 
+            SubmitType::class,
+            array(
+                'label' => 'Valider'
+            )
+        );
+
+        $form = $formBuilder->getForm();
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $formData = $form->getData();
+
+            if ($formData['subject']=='ordre croissant'){
+                $worksModel = new Site\Models\Works($app['db']);
+                $data['works'] = $worksModel->sortedByAsc();
+            }
+            else{
+                $worksModel = new Site\Models\Works($app['db']);
+                $data['works'] = $worksModel->sortedByDsc();
+            }
+            
+             
+        }
+
+
+        $data['sorted_form'] = $form->createView();
 
         return $app['twig']->render('pages/home.twig', $data);
     })

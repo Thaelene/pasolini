@@ -165,4 +165,36 @@ class Works
         return $novels;
     }
 
+    public function sortedByAsc()
+    {
+        $query = $this->db->query('
+            SELECT
+                *
+            FROM
+                works 
+            ORDER BY 
+                score ASC
+
+        ');
+        $works = $query->fetchAll();
+
+        return $works;
+    }
+
+    public function sortedByDsc()
+    {
+        $query = $this->db->query('
+            SELECT
+                *
+            FROM
+                works 
+            ORDER BY 
+                score DESC
+
+        ');
+        $works = $query->fetchAll();
+
+        return $works;
+    }
+
 }
