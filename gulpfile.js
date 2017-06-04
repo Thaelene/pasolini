@@ -26,7 +26,7 @@ const config = {
 }
 
 // Running it by the command line : gulp
-gulp.task( 'default', [ 'silex-composer', 'include', 'sass', 'css', 'javascript', 'twig', 'components', 'watch' ], function() {} );
+gulp.task( 'default', [ 'silex-composer', 'silex', 'imagemin', 'include', 'sass', 'css', 'javascript', 'twig', 'components', 'watch' ], function() {} );
 
 // Moving src/web/.php file to dist/web/.php
 gulp.task('include', function () {
