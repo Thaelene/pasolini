@@ -4,17 +4,17 @@
 
     <h2 class="home-work_logo logo">Ses films <span>:</span></h2>
 
-    {{ form_start(filmography_form) }}
+    {{ form_start(novels_form) }}
 
     <div class="form-group">
-        {{ form_label(filmography_form.subject) }} {{ form_widget(filmography_form.subject) }}
+        {{ form_label(novels_form.subject) }} {{ form_widget(novels_form.subject) }}
         <div class="text-danger">
-            {{ form_errors(filmography_form.subject) }}
+            {{ form_errors(novels_form.subject) }}
         </div>
     </div>
 
     <div class="form-group">
-        {{ form_widget(filmography_form.submit) }}
+        {{ form_widget(novels_form.submit) }}
     </div>
 
     <section>

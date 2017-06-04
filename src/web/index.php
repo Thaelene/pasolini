@@ -84,7 +84,7 @@ $app
         $data = array();
         
         $worksModel = new Site\Models\Works($app['db']);
-        $data['work'] = $worksModel->getAll();
+        $data['work'] = $worksModel->getMovies();
 
         $formBuilder = $app['form.factory']->createBuilder();
 
@@ -136,14 +136,68 @@ $app
     ->bind('filmography');
 
 $app
-    ->get('/article-2', function() use ($app)
+    ->match('/romans-essais', function(Request $request) use ($app)
     {
 
+        $data = array();
         
+        $worksModel = new Site\Models\Works($app['db']);
+        $data['work'] = $worksModel->getNovels();
 
-        return $app['twig']->render('pages/article-2.twig', $data);
+        $formBuilder = $app['form.factory']->createBuilder();
+
+        $formBuilder->setMethod('post');
+        $formBuilder->setAction($app['url_generator']->generate('novels-essays'));
+
+        $formBuilder->add(
+            'subject',
+            ChoiceType::class,
+            array(
+                'label' => 'Catégorie souhaitée',
+                'required' => true,
+                'choices' => array(
+                    'Romans' => 'Roman',
+                    'Essais' => 'Essai',
+                )
+            )
+        );
+
+        $formBuilder->add(
+            'submit', 
+            SubmitType::class,
+            array(
+                'label' => 'Valider'
+            )
+        );
+
+        $form = $formBuilder->getForm();
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $formData = $form->getData();
+
+            $worksModel = new Site\Models\Works($app['db']);
+            $data['work'] = $worksModel->getNovelsOrEssays($formData);
+             
+        }
+
+
+        $data['novels_form'] = $form->createView();
+
+        return $app['twig']->render('pages/novels-essays.twig', $data);
     })
-    ->bind('article-2');
+    ->bind('novels-essays');
+
+$app
+    ->get('/a-propos', function() use ($app)
+    {
+
+        $data = array();
+
+        return $app['twig']->render('pages/about.twig', $data);
+    })
+    ->bind('about');
 
 
 // Run Silex

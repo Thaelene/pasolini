@@ -85,6 +85,44 @@ class Works
         return $work;
     }
 
+    public function getMovies()
+    {
+      $query = $this->db->query('
+            SELECT
+                *
+            FROM
+                works AS w
+            LEFT JOIN
+                categories AS cat
+            ON
+                w.id = cat.id_category
+            WHERE
+                w.category = "Film"
+        ');
+        $movies = $query->fetchAll();
+
+        return $movies;
+    }
+
+    public function getNovels()
+    {
+      $query = $this->db->query('
+            SELECT
+                *
+            FROM
+                works AS w
+            LEFT JOIN
+                categories AS cat
+            ON
+                w.id = cat.id_category
+            WHERE
+                w.category = "Roman" OR w.category = "Essai"
+        ');
+        $novels = $query->fetchAll();
+
+        return $novels;
+    }
+
     public function getSubCategory($formData)
     {
       $prepare = $this->db->prepare('
@@ -104,6 +142,27 @@ class Works
         $categories = $prepare->fetchAll();
 
         return $categories;
+    }
+
+    public function getNovelsOrEssays($formData)
+    {
+        $prepare = $this->db->prepare('
+            SELECT
+                *
+            FROM
+                works AS w
+            LEFT JOIN
+                categories AS cat
+            ON
+                w.id = cat.id_category
+            WHERE
+                w.category = :category
+        ');
+        $prepare->bindValue('category', $formData['subject']);
+        $prepare->execute();
+        $novels = $prepare->fetchAll();
+
+        return $novels;
     }
 
 }

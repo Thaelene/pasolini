@@ -1,0 +1,67 @@
+.about-background{
+    background-image: url(../img/pasolini-about.jpg);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-size: cover;
+
+    @media only screen and (max-device-width : 736px) {
+        height: 50vh;
+        background-repeat: no-repeat;
+    }
+}
+.about-background_logo{
+    font-size: 96px;
+    line-height: 92px;
+
+    span{
+        display: block;
+    }
+}
+
+.about-work_logo{
+    font-size: 38px;
+}
+
+.about-quote{
+
+    div{
+        margin: 5% 0;
+        p{
+            font-family: 'Open Sans Semibold';
+            font-size: 22px;
+            line-height: 33px;
+
+            span{
+                color: $secondary-color;
+            }
+        }
+    
+        .about-quote_credits{
+            text-align: right;
+        }
+
+        .about-quote_title{
+            font-style: italic;
+            color: $primary-color;
+        }
+    }   
+}
+
+.about-civil-status_content{
+    span{
+        color: $secondary-color;
+        font-family: "Open Sans Semibold";
+    }
+}
+
+.about-biography{
+    margin-bottom: 7%;
+}
+.about-biography_content{
+    p{
+        line-height: 24px;
+    }
+}

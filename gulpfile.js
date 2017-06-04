@@ -133,7 +133,7 @@ gulp.task('silex-composer', function () {
 //Move silex files into dist
 gulp.task('silex', function () {
   return gulp.src(
-      config.src + 'vendor/*'
+      config.src + 'vendor/**'
       )
   .pipe(gulp.dest(config.dist + 'vendor'))
 });

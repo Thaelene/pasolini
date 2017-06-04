@@ -19,22 +19,19 @@
 
     <section>
         {% for _work in work %}
-    <div class="work">
-    <div class="work-img">
-        <img 
-            src="{{_work.picture}}" 
-            width="100%"
-        >
-    </div>
-    <div class="work-info">
-        <p><span class="work-info_title">Titre :</span> {{ _work.title }}</p>
-        <p><span class="work-info_title">Année de sortie :</span> {{ _work.release_year }}</p>
-        <p><span class="work-info_title">Durée :</span> {{ _work.length }} min/pages</p>
-        <p><span class="work-info_title">Synopsis :</span> {{ _work.description }}</p>
-        <p><span class="work-info_title">Score :</span> {{ _work.score }} / 10</p>
-    </div>
-</div>
-    {% endfor %}
+        <div class="work">
+            <div class="work-img">
+                <img src="{{_work.picture}}" width="100%">
+            </div>
+            <div class="work-info">
+                <p><span class="work-info_title">Titre :</span> {{ _work.title }}</p>
+                <p><span class="work-info_title">Année de sortie :</span> {{ _work.release_year }}</p>
+                <p><span class="work-info_title">Durée :</span> {{ _work.length }} min/pages</p>
+                <p><span class="work-info_title">Synopsis :</span> {{ _work.description }}</p>
+                <p><span class="work-info_title">Score :</span> {{ _work.score }} / 10</p>
+            </div>
+        </div>
+        {% endfor %}
     </section>
 
 </div>
